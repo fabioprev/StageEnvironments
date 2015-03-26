@@ -15,7 +15,7 @@
   <arg name="laser_frame" default="laser_frame" />
 
   <group if="$(arg map_server)">
-    <node pkg="map_server" type="map_server" name="map_server" args="$(find stage_environments)/maps/$(arg map_name).yaml" respawn="false" >
+    <node pkg="map_server" type="map_server" name="map_server" args="$(find StageEnvironments)/maps/$(arg map_name).yaml" respawn="false" >
       <param name="frame_id" value="/map" />
     </node>
   </group>
@@ -35,7 +35,7 @@
 	  <remap from="static_map" to="/static_map" />
 
 	  <!-- Default parameters -->
-	  <rosparam file="$(find stage_environments)/config/$(arg robot_name)/localization/amcl.yaml" command="load" />
+	  <rosparam file="$(find StageEnvironments)/config/$(arg robot_name)/localization/amcl.yaml" command="load" />
 	  
 	  <!-- Override Params to include prefix -->
 	  <param name="base_frame_id" value="/$(arg robot_name)/base_frame"/>
@@ -88,12 +88,12 @@
 		<remap from="odom" to="odom" />
 		<remap from="cmd_vel" to="cmd_vel" />
 
-		<rosparam file="$(find stage_environments)/config/$(arg robot_name)/navigation/move_base_params.yaml" command="load" />
-		<rosparam file="$(find stage_environments)/config/$(arg robot_name)/navigation/costmap_common_params.yaml" command="load" ns="global_costmap" />
-		<rosparam file="$(find stage_environments)/config/$(arg robot_name)/navigation/costmap_common_params.yaml" command="load" ns="local_costmap" />
-		<rosparam file="$(find stage_environments)/config/$(arg robot_name)/navigation/local_costmap_params.yaml" command="load" />
-		<rosparam file="$(find stage_environments)/config/$(arg robot_name)/navigation/global_costmap_params.yaml" command="load" />
-		<rosparam file="$(find stage_environments)/config/$(arg robot_name)/navigation/base_local_planner_params.yaml" command="load" />
+		<rosparam file="$(find StageEnvironments)/config/$(arg robot_name)/navigation/move_base_params.yaml" command="load" />
+		<rosparam file="$(find StageEnvironments)/config/$(arg robot_name)/navigation/costmap_common_params.yaml" command="load" ns="global_costmap" />
+		<rosparam file="$(find StageEnvironments)/config/$(arg robot_name)/navigation/costmap_common_params.yaml" command="load" ns="local_costmap" />
+		<rosparam file="$(find StageEnvironments)/config/$(arg robot_name)/navigation/local_costmap_params.yaml" command="load" />
+		<rosparam file="$(find StageEnvironments)/config/$(arg robot_name)/navigation/global_costmap_params.yaml" command="load" />
+		<rosparam file="$(find StageEnvironments)/config/$(arg robot_name)/navigation/base_local_planner_params.yaml" command="load" />
 		
 		<!-- Override MOVE_BASE Frame Params to include prefix -->
 		<param name="global_costmap/laser_scan_sensor/sensor_frame" value="/$(arg robot_name)/$(arg laser_frame)"/>

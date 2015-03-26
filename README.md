@@ -1,5 +1,5 @@
 ==================
-stage_environments
+StageEnvironments
 
 Luca Iocchi, 2014
 ==================

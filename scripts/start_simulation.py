@@ -68,7 +68,7 @@ def run_simulation(map_name,robot,initpose,localization,navigation,joystick,keyb
 
   # Start the simulated environment
 
-  cmd = 'xterm -e roslaunch stage_environments stage_map.launch world_file:=%s robot_type:=%s laser_topic:=%s laser_frame:=%s &' % (output_worldfile, robottype, LASER_TOPIC, LASER_FRAME)
+  cmd = 'xterm -e roslaunch StageEnvironments stage_map.launch world_file:=%s robot_type:=%s laser_topic:=%s laser_frame:=%s &' % (output_worldfile, robottype, LASER_TOPIC, LASER_FRAME)
   #print cmd
   os.system(cmd)
   os.system('sleep 5')
@@ -98,7 +98,7 @@ def run_simulation(map_name,robot,initpose,localization,navigation,joystick,keyb
 
  
 
-  cmd = 'xterm -e roslaunch stage_environments stage_robot.launch robot_name:=%s map_name:=%s initial_pose_x:=%f initial_pose_y:=%f initial_pose_a:=%f laser_topic:=%s laser_frame:=%s %s %s %s %s %s &' % (robot, map_name, INITPOSE_X, INITPOSE_Y, INITPOSE_TH_RAD, LASER_TOPIC, LASER_FRAME, amcl_str, glocalizer_str, gbn_str, move_base_str, no_localizer_str )
+  cmd = 'xterm -e roslaunch StageEnvironments stage_robot.launch robot_name:=%s map_name:=%s initial_pose_x:=%f initial_pose_y:=%f initial_pose_a:=%f laser_topic:=%s laser_frame:=%s %s %s %s %s %s &' % (robot, map_name, INITPOSE_X, INITPOSE_Y, INITPOSE_TH_RAD, LASER_TOPIC, LASER_FRAME, amcl_str, glocalizer_str, gbn_str, move_base_str, no_localizer_str )
   #print cmd
   if (run_amcl or run_glocalizer or run_gradient_based_navigation):
     os.system(cmd)
@@ -107,7 +107,7 @@ def run_simulation(map_name,robot,initpose,localization,navigation,joystick,keyb
 
   if (joystick==1):
     # Drive the robot with joystick 
-    cmd = 'xterm -e "roslaunch stage_environments joystick.launch robot_name:=%s ' % (robot)
+    cmd = 'xterm -e "roslaunch StageEnvironments joystick.launch robot_name:=%s ' % (robot)
     if (run_gradient_based_navigation):
       cmd = cmd + 'cmd_vel_topic:=joystick_cmd_vel" &'
     else:
@@ -128,7 +128,7 @@ def run_simulation(map_name,robot,initpose,localization,navigation,joystick,keyb
   
   if (rviz==1):
     # Start rviz
-    cmd = 'xterm -e rosrun rviz rviz -d `rospack find stage_environments`/config/%s/rviz/%s.rviz &' % (robot,robot)
+    cmd = 'xterm -e rosrun rviz rviz -d `rospack find StageEnvironments`/config/%s/rviz/%s.rviz &' % (robot,robot)
     os.system(cmd)
 
 
@@ -349,7 +349,7 @@ def main():
     print "Starting the simulation..."
     run_simulation(map_name, robot_name, init_pose, localization, navigation, joystick, keyboard, rviz)
     print "Use the following command to quit the simulation"
-    print "  `rospack find stage_environments`/scripts/quit.sh"
+    print "  `rospack find StageEnvironments`/scripts/quit.sh"
     
   else:
     print "Use: ",sys.argv[0]

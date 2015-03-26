@@ -32,7 +32,7 @@ include_directories(${FLTK_INCLUDE_DIRS})
 include_directories(${Stage_INCLUDE_DIRS})
 
 catkin_package(INCLUDE_DIRS ${Stage_INCLUDE_DIRS}
-			   LIBRARIES stage_environments ${Stage_LIBRARIES}
+			   LIBRARIES StageEnvironments ${Stage_LIBRARIES}
 			   CATKIN_DEPENDS geometry_msgs nav_msgs roscpp sensor_msgs std_msgs tf
 			   DEPENDS Boost)
 
